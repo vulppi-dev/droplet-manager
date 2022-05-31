@@ -2,5 +2,8 @@
 
 $REPO_PATH=/opt/manager
 
-git -C $REPO_PATH pull
+cd $REPO_PATH &&\
+git -C $REPO_PATH pull &&\
+npm run build
+
 pm2 reload all
