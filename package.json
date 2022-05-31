@@ -2,5 +2,15 @@
   "name": "@vulppi/system",
   "version": "0.0.1",
   "private": true,
-  "workspaces": ["apps/*", "packages/*"]
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build --parallel",
+    "dev": "turbo run dev --parallel"
+  },
+  "dependencies": {
+    "turbo": "^1.2.14"
+  }
 }

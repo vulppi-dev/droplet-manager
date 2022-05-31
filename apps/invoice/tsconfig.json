@@ -1,0 +1,26 @@
+{
+  "compileOnSave": true,
+  "exclude": ["node_modules", "dist", "bin"],
+  "include": ["src/**/*.ts"],
+
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "isolatedModules": false,
+    "moduleResolution": "node",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "lib": ["esNext"],
+    "target": "es2022",
+    "module": "es2022",
+    "outDir": "dist",
+    "baseUrl": "src"
+  }
+}

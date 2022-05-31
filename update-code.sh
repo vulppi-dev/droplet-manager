@@ -3,4 +3,4 @@
 $REPO_PATH=/opt/manager
 
 git -C $REPO_PATH pull
-pm2 restart all
+pm2 reload all
