@@ -1,14 +1,15 @@
 import cors from 'cors'
 import express, { NextFunction, Request, Response, Router } from 'express'
 import { readdirSync, statSync } from 'fs'
-import { join } from 'path'
+import { join, dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
 
 type TypeMethods = 'get' | 'post' | 'put' | 'delete'
 
 const ALLOW_ORIGINS = (process.env.ALLOW_ORIGINS || '').split(/; */g)
 const NEW_VALUES_LIMIT = process.env.NEW_VALUES_LIMIT || '10mb'
 
-const requestParser = (req: Request, res: Response, next: NextFunction) => {
+const requestParser = (req: Request, _: Response, next: NextFunction) => {
   function recursiveParse(obj: Record<string, any> = {}) {
     for (let r in obj) {
       switch (true) {
@@ -71,9 +72,7 @@ export default async function configureExpressRoutes(app: Router) {
     res.status(500).json({ message: 'Something broke!' })
   })
 
-  
-
-  const basePath = module.path
+  const basePath = dirname(resolve(fileURLToPath(import.meta.url)))
   const files = getAllFiles(join(basePath, 'api')).reverse()
 
   for (let path of files) {

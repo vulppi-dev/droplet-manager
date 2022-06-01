@@ -34,6 +34,7 @@ yarn-error.log*
 packages/**/*.env*
 apps/web/*.env*
 apps/doc/*.env*
+*.env
 *.env.local
 *.env.dev
 
