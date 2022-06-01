@@ -1,6 +1,7 @@
 import cors from 'cors'
 import express, { NextFunction, Request, Response, Router } from 'express'
-import { readdirSync, statSync } from 'fs'
+import { readdirSync, readFileSync, statSync } from 'fs'
+import { StatusCodes } from 'http-status-codes'
 import { join, dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -98,4 +99,18 @@ export default async function configureExpressRoutes(app: Router) {
       )
     }
   }
+
+  const pkg = JSON.parse(
+    readFileSync(join(basePath, '..', 'package.json'), 'utf8'),
+  )
+
+  app.get('/', (_, res) => {
+    res
+      .status(StatusCodes.OK)
+      .json({ message: 'Vulppi Manager', version: pkg.version, name: pkg.name })
+  })
+
+  app.get('*', (_, res) => {
+    res.status(StatusCodes.NOT_FOUND).json({ message: 'Not found' })
+  })
 }
