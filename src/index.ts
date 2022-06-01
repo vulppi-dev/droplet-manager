@@ -7,6 +7,8 @@ import { WebSocketServer as WIO } from 'ws'
 import routesConfig from './routes.js'
 import socketConfig from './socket.js'
 
+import './jobs.js'
+
 // Configurando modo desenvolvedor
 const devMode = process.env.NODE_ENV !== 'production'
 

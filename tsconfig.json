@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "exclude": ["node_modules", "dist", "bin"],
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "types.d.ts"],
 
   "compilerOptions": {
     "composite": false,

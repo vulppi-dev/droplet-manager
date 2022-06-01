@@ -1,10 +1,5 @@
-import { getFirestore } from 'firebase-admin/firestore'
 import { WebSocketServer } from 'ws'
-import GenericSocket, { socketParser } from './io/base.js'
-import { getAdminApp } from './services/firebase.js'
-
-const admin = getAdminApp()
-const db = getFirestore(admin)
+import { socketParser } from './io/base.js'
 
 export default async function configureSocketServer(io: WebSocketServer) {
   io.on('connection', async (client, req) => {
