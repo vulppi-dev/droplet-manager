@@ -71,7 +71,9 @@ export default async function configureExpressRoutes(app: Router) {
     res.status(500).json({ message: 'Something broke!' })
   })
 
-  const basePath = join(process.cwd(), 'dist')
+  
+
+  const basePath = module.path
   const files = getAllFiles(join(basePath, 'api')).reverse()
 
   for (let path of files) {
