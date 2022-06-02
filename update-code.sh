@@ -3,5 +3,5 @@
 REPO_PATH=/opt/manager
 
 git -C $REPO_PATH pull
-npm i --force --prefix $REPO_PATH
+npm i --production=false --force --prefix $REPO_PATH
 pm2 reload all
