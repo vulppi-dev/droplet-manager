@@ -42,3 +42,6 @@ apps/doc/*.env*
 .turbo
 .vercel
 .output
+
+# temp files
+*.tmp
