@@ -106,7 +106,7 @@ export default async function configureExpressRoutes(app: Router) {
     res.status(StatusCodes.OK).json({
       message: 'Vulppi Manager',
       version: process.env.npm_package_version,
-      name: process.env.npm_package_version,
+      name: process.env.npm_package_name,
     })
   })
 
