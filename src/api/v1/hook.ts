@@ -38,7 +38,7 @@ export const get: RequestHandler[] = [
         exec(`cd ${repoPath} && git reset --hard && git pull`)
       }
 
-      exec(`cd ${repoPath} && npm i --only=prod`)
+      exec(`cd ${repoPath} && npm i`)
 
       if (firstTime) {
         try {
@@ -48,7 +48,7 @@ export const get: RequestHandler[] = [
         } catch (err) {}
       } else {
         try {
-          exec(`pm2 restart ${repoName}`)
+          exec(`pm2 restart ${repoName} --update-env`)
           console.log('success restart'.green)
         } catch (err) {}
       }
