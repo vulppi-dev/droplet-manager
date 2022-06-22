@@ -23,6 +23,8 @@ export const post: RequestHandler[] = [
       const repoFullName = body.repository.full_name
       const ownerName = body.repository.owner.login
       const repoPath = path.join(mainPath, repoName)
+      const pkgPath = path.join(repoPath, 'package.json')
+
       try {
         exec(`pm2 stop ${repoName}`)
         console.log('success stop'.green)
@@ -38,7 +40,16 @@ export const post: RequestHandler[] = [
         exec(`cd ${repoPath} && git reset --hard && git pull`)
       }
 
-      exec(`cd ${repoPath} && npm i`)
+      const hasPkg = !fs.existsSync(pkgPath)
+
+      if (!hasPkg) {
+        res.status(StatusCodes.OK).send()
+        return
+      }
+
+      exec(
+        `cd ${repoPath} && npm i --production=false && npm run build && npm i`,
+      )
 
       if (firstTime) {
         try {
@@ -55,6 +66,7 @@ export const post: RequestHandler[] = [
 
       console.log('success'.green)
       res.status(StatusCodes.OK).end()
+      return
     }
     res.status(StatusCodes.UNAUTHORIZED).end()
   },
