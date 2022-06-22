@@ -14,18 +14,17 @@ if [ -f $BUILD_PATH/manager/scripts/manager.sh ]; then
   cp $BUILD_PATH/manager/scripts/manager.sh /opt/scripts/manager.sh
   chmod 777 /opt/scripts/manager.sh
 fi
-if [ -f $BUILD_PATH/manager/rollup.config.js ]; then
-  cp $BUILD_PATH/manager/rollup.config.js $BUILD_PATH/rollup.config.js
-fi
 
 npm --prefix=$BUILD_PATH/manager --production=false i
 npm --prefix=$BUILD_PATH/manager run build
 
 if [ -f $BUILD_PATH/manager/dist/index.js ]; then
-  cp $BUILD_PATH/manager/dist/index.js $APPS_PATH/manager.mjs
+  cp -r $BUILD_PATH/manager/dist $APPS_PATH/manager/dist
+  cp $BUILD_PATH/manager/package.json $APPS_PATH/manager/dist/package.json
+  npm --prefix=$APPS_PATH/manager i
 fi
 
-pm2 start $APPS_PATH/manager.mjs --name manager --update-env
+pm2 start $APPS_PATH/manager --name manager --update-env
 pm2 save
 
 rm -rf $BUILD_PATH/manager

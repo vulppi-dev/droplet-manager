@@ -5,24 +5,15 @@
   "main": "dist/index.js",
   "private": true,
   "scripts": {
+    "start": "node dist/index.js",
     "build": "run-s build:clean build:start",
     "build:clean": "rimraf ./dist ./uploads.tmp",
-    "build:start": "rollup -c rollup.config.js",
+    "build:start": "tsc",
     "dev": "run-p dev:build dev:watch",
     "dev:build": "tsc -w",
     "dev:watch": "nodemon --watch dist --delay 1 -r dotenv/config dist"
   },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.3",
-    "@types/cors": "^2.8.12",
-    "@types/cron": "^2.0.0",
-    "@types/express": "^4.17.13",
-    "@types/multer": "^1.4.7",
-    "@types/node": "^18.0.0",
-    "@types/ws": "^8.5.3",
+  "dependencies": {
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "cron": "^2.0.0",
@@ -32,14 +23,19 @@
     "http-status-codes": "^2.2.0",
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.1",
+    "vm2": "^3.9.9",
+    "ws": "^8.8.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/cron": "^2.0.0",
+    "@types/express": "^4.17.13",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^18.0.0",
+    "@types/ws": "^8.5.3",
     "nodemon": "^2.0.16",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
-    "rollup": "^2.75.7",
-    "rollup-plugin-terser": "^7.0.2",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.4",
-    "vm2": "^3.9.9",
-    "ws": "^8.8.0"
+    "typescript": "^4.7.4"
   }
 }
