@@ -19,13 +19,15 @@ npm --prefix=$BUILD_PATH/manager --production=false i
 npm --prefix=$BUILD_PATH/manager run build
 
 if [ -f $BUILD_PATH/manager/dist/index.js ]; then
-  mkdir -p $APPS_PATH/manager/dist
-  cp -r $BUILD_PATH/manager/dist $APPS_PATH/manager/dist
-  cp $BUILD_PATH/manager/package.json $APPS_PATH/manager/package.json
+  rimraf $APPS_PATH/manager
+  mkdir -p $APPS_PATH/manager
+  cp -r $BUILD_PATH/manager/dist $APPS_PATH/manager/
+  cp $BUILD_PATH/manager/package.json $APPS_PATH/manager/
   npm --prefix=$APPS_PATH/manager i
 fi
 
-pm2 start $APPS_PATH/manager --name manager --update-env
+pm2 delete manager
+cd $APPS_PATH/manager && pm2 start --name manager --update-env npm -- start
 pm2 save
 
 rm -rf $BUILD_PATH/manager
