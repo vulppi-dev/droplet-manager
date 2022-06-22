@@ -29,7 +29,9 @@ interface SocketParserOptions {
   query: URLSearchParams
 }
 
-export const socketParser = ({}: SocketParserOptions) => {
+export const socketParser = ({ client }: SocketParserOptions) => {
+  client.terminate()
+
   // if (path == '/devices' && query.has('device')) {
   //   const did = query.get('device') as string
   //   console.debug('Device connected:', did.blue)

@@ -1,8 +1,8 @@
 import cors from 'cors'
 import express, { NextFunction, Request, Response, Router } from 'express'
-import { readdirSync, readFileSync, statSync } from 'fs'
+import { readdirSync, statSync } from 'fs'
 import { StatusCodes } from 'http-status-codes'
-import { join, dirname, resolve } from 'path'
+import { dirname, join, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
 type TypeMethods = 'get' | 'post' | 'put' | 'delete'
@@ -68,9 +68,11 @@ export default async function configureExpressRoutes(app: Router) {
   )
   app.use(requestParser)
 
-  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  app.use((err: any, _: Request, res: Response, __: NextFunction) => {
     err && console.error(err)
-    res.status(500).json({ message: 'Something broke!' })
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: 'Something broke!' })
   })
 
   const basePath = dirname(resolve(fileURLToPath(import.meta.url)))
@@ -100,14 +102,12 @@ export default async function configureExpressRoutes(app: Router) {
     }
   }
 
-  const pkg = JSON.parse(
-    readFileSync(join(basePath, '..', 'package.json'), 'utf8'),
-  )
-
   app.get('/', (_, res) => {
-    res
-      .status(StatusCodes.OK)
-      .json({ message: 'Vulppi Manager', version: pkg.version, name: pkg.name })
+    res.status(StatusCodes.OK).json({
+      message: 'Vulppi Manager',
+      version: process.env.npm_package_version,
+      name: process.env.npm_package_version,
+    })
   })
 
   app.get('*', (_, res) => {

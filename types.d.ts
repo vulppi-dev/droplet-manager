@@ -16,6 +16,7 @@ declare interface Invoice {
   description?: string
   status?: string
   emails?: string[]
+  daysUntilDue?: number
   stripeCustomerId?: string
   stripeInvoiceId?: string
   stripeInvoiceUrl?: string
@@ -27,3 +28,5 @@ declare interface ToolMeta {
   tier: number
   [k: string]: any
 }
+
+declare type RequestHandler = import('express').RequestHandler
