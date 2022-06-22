@@ -1,5 +1,4 @@
 import 'colors'
-import getPort from 'get-port'
 import http from 'http'
 import express from 'express'
 import { WebSocketServer as WIO } from 'ws'
@@ -34,11 +33,7 @@ Promise.resolve(devMode).then(async (dev) => {
   let port = PORT ? parseInt(PORT) : NaN
 
   if (dev) {
-    port = await getPort({
-      port: Array(11)
-        .fill(3000)
-        .map((e, i) => e + i),
-    })
+    port = 3001
   }
 
   // Habilitando serviços

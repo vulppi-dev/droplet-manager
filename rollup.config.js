@@ -2,6 +2,7 @@ import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
+import json from '@rollup/plugin-json'
 
 const config = [
   {
@@ -11,10 +12,9 @@ const config = [
       format: 'module',
     },
     plugins: [
-      nodeResolve(),
-      typescript({
-        outputToFilesystem: false,
-      }),
+      nodeResolve({ preferBuiltins: false }),
+      json(),
+      typescript({ outputToFilesystem: false }),
       commonjs(),
       terser(),
     ],
