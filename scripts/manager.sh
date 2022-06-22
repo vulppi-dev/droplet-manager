@@ -19,8 +19,9 @@ npm --prefix=$BUILD_PATH/manager --production=false i
 npm --prefix=$BUILD_PATH/manager run build
 
 if [ -f $BUILD_PATH/manager/dist/index.js ]; then
+  mkdir -p $APPS_PATH/manager/dist
   cp -r $BUILD_PATH/manager/dist $APPS_PATH/manager/dist
-  cp $BUILD_PATH/manager/package.json $APPS_PATH/manager/dist/package.json
+  cp $BUILD_PATH/manager/package.json $APPS_PATH/manager/package.json
   npm --prefix=$APPS_PATH/manager i
 fi
 

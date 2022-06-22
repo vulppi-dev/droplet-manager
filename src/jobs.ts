@@ -1,6 +1,6 @@
 import { CronJob } from 'cron'
-import * as invoiceJobs from './jobs/invoice'
-import * as orphansJobs from './jobs/orphans'
+import * as invoiceJobs from './jobs/invoice.js'
+import * as orphansJobs from './jobs/orphans.js'
 
 const jobs = [] as Job[]
 

@@ -3,10 +3,10 @@ import http from 'http'
 import express from 'express'
 import { WebSocketServer as WIO } from 'ws'
 
-import routesConfig from './routes'
-import socketConfig from './socket'
+import routesConfig from './routes.js'
+import socketConfig from './socket.js'
 
-import './jobs'
+import './jobs.js'
 
 // Configurando modo desenvolvedor
 const devMode = process.env.NODE_ENV !== 'production'
