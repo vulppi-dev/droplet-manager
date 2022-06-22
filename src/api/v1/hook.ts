@@ -8,7 +8,7 @@ const mainPath = process.env.APPS_PATH!
 const githubKey = process.env.GITHUB_TOKEN_ACCESS!
 const secret = process.env.WEBHOOK_SECRET!
 
-export const get: RequestHandler[] = [
+export const post: RequestHandler[] = [
   async ({ body, headers }, res) => {
     console.log('PAYLOAD:', body)
 
