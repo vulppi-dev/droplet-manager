@@ -1,16 +1,13 @@
 {
   "name": "@vulppi/droplet-manager",
-  "version": "0.2.3",
+  "version": "0.3.1",
   "type": "module",
   "main": "dist/index.js",
   "private": true,
   "scripts": {
-    "start": "npm i --production=false --force && run-s build start:dist",
-    "start:prepare": "npm i",
-    "start:dist": "npm i && node dist",
     "build": "run-s build:clean build:start",
     "build:clean": "rimraf ./dist ./uploads.tmp",
-    "build:start": "tsc",
+    "build:start": "rollup -c rollup.config.js",
     "dev": "run-p dev:build dev:watch",
     "dev:build": "tsc -w",
     "dev:watch": "nodemon --watch dist --delay 1 -r dotenv/config dist"
