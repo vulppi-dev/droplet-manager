@@ -4,7 +4,7 @@ import {
   Firestore,
   getFirestore,
 } from 'firebase-admin/firestore'
-import { getAdminApp } from '../services/firebase'
+import { getAdminApp } from '../services/firebase.js'
 
 /**
  * Map of projects with user ids
