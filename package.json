@@ -5,10 +5,11 @@
   "main": "dist/index.js",
   "private": true,
   "scripts": {
-    "start": "run-s build start:prepare start:dist",
+    "start": "run-s build:prepare build start:prepare start:dist",
     "start:prepare": "npm i",
     "start:dist": "node dist",
     "build": "run-s build:clean build:start",
+    "build:prepare": "npm i --production=false --force",
     "build:clean": "rimraf ./dist ./uploads.tmp",
     "build:start": "tsc",
     "dev": "run-p dev:build dev:watch",
