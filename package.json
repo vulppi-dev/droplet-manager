@@ -1,15 +1,14 @@
 {
   "name": "@vulppi/droplet-manager",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "main": "dist/index.js",
   "private": true,
   "scripts": {
-    "start": "run-s build:prepare build start:prepare start:dist",
+    "start": "npm i --production=false --force && run-s build start:dist",
     "start:prepare": "npm i",
-    "start:dist": "node dist",
+    "start:dist": "npm i && node dist",
     "build": "run-s build:clean build:start",
-    "build:prepare": "npm i --production=false --force",
     "build:clean": "rimraf ./dist ./uploads.tmp",
     "build:start": "tsc",
     "dev": "run-p dev:build dev:watch",
