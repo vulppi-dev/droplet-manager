@@ -4,10 +4,10 @@ import http from 'http'
 import express from 'express'
 import { WebSocketServer as WIO } from 'ws'
 
-import routesConfig from './routes.js'
-import socketConfig from './socket.js'
+import routesConfig from './routes'
+import socketConfig from './socket'
 
-import './jobs.js'
+import './jobs'
 
 // Configurando modo desenvolvedor
 const devMode = process.env.NODE_ENV !== 'production'
@@ -23,7 +23,7 @@ if (devMode) {
 }
 
 // Carregando dados das variáveis de ambiente
-const PORT = process.env.PORT
+const PORT = process.env.MANAGER_PORT
 
 // Criando aplicação
 const app = express()

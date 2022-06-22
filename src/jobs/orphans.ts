@@ -1,5 +1,5 @@
 import { FieldValue, getFirestore } from 'firebase-admin/firestore'
-import { getAdminApp } from '../services/firebase.js'
+import { getAdminApp } from '../services/firebase'
 
 /**
  * every day 1:00 am check for orphaned projects

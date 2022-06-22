@@ -1,5 +1,5 @@
 import { WebSocketServer } from 'ws'
-import { socketParser } from './io/base.js'
+import { socketParser } from './io/base'
 
 export default async function configureSocketServer(io: WebSocketServer) {
   io.on('connection', async (client, req) => {
